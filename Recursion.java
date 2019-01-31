@@ -22,7 +22,28 @@ public class Recursion{
     }
     return fibH(n - 1, second, first + second);
   }
+  public static ArrayList<Integer> makeAllSum(int n){
+    ArrayList<Integer> values = new ArrayList<Integer>();
+    return makeAllSumH(n, values, 0, Math.pow(2, n), n);
+  }
+  public static ArrayList<Integer> makeAllSumsH(int n, ArrayList<Integer> values, int partialSum, int counter, int num){
+    if(n == 0){
+      values.add(partialSum);
+      makeAllSums(num, values, 0, counter -= 1, n);
+    }
+    if(counter = 0){
+      return values;
+    }
+    makeAllSums(n - 1, values, partialSum + n, counter -= 1, num);
+  }
+  public static String printArray(ArrayList<Integer> values){
+    String output = "[";
+    for(int i = 0; i < values.length; i++){
+      output += (" " + i + " ");}
+    output += "]";
+    return output;}
+
   public static void main(String[] args){
-    System.out.println(fib(0));
+    System.out.println(printArray(makeAllSum(3)));
   }
 }
