@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 public class Recursion{
   public static double sqrt(double num, double epsilon){
     return sqrtH(num, epsilon, num / 2);}
@@ -22,28 +23,29 @@ public class Recursion{
     }
     return fibH(n - 1, second, first + second);
   }
-  public static ArrayList<Integer> makeAllSum(int n){
+  public static ArrayList<Integer> makeAllSums(int n){
     ArrayList<Integer> values = new ArrayList<Integer>();
-    return makeAllSumH(n, values, 0, Math.pow(2, n), n);
+    return makeAllSumsH(n, values, 0, (int) Math.pow(2, n), n);
   }
   public static ArrayList<Integer> makeAllSumsH(int n, ArrayList<Integer> values, int partialSum, int counter, int num){
     if(n == 0){
       values.add(partialSum);
-      makeAllSums(num, values, 0, counter -= 1, n);
+      return makeAllSumsH(num, values, 0, counter -= 1, num);
     }
-    if(counter = 0){
+    if(counter == 0){
       return values;
     }
-    makeAllSums(n - 1, values, partialSum + n, counter -= 1, num);
+    return makeAllSumsH(n - 1, values, partialSum + n, counter, num);
+
   }
   public static String printArray(ArrayList<Integer> values){
     String output = "[";
-    for(int i = 0; i < values.length; i++){
-      output += (" " + i + " ");}
+    for(int i = 0; i < values.size(); i++){
+      output += (" " + values.get(i) + " ");}
     output += "]";
     return output;}
 
   public static void main(String[] args){
-    System.out.println(printArray(makeAllSum(3)));
+    System.out.println(printArray(makeAllSums(3)));
   }
 }
