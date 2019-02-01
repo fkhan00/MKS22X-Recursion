@@ -23,21 +23,25 @@ public class Recursion{
     }
     return fibH(n - 1, second, first + second);
   }
-  public static ArrayList<Integer> makeAllSums(int n){
+  public static String makeAllSums(int n){
     ArrayList<Integer> values = new ArrayList<Integer>();
-    return makeAllSumsH(n, values, 0, (int) Math.pow(2, n), n);
+    return makeAllSumsH(n, 0, n, (int) Math.pow(2, n), true);
   }
-  public static ArrayList<Integer> makeAllSumsH(int n, ArrayList<Integer> values, int partialSum, int counter, int num){
+  public static String makeAllSumsH(int n, int partialSum, int num,int counter, boolean insert){
     if(n == 0){
-      values.add(partialSum);
-      return makeAllSumsH(num, values, 0, counter -= 1, num);
+      n = num;
+      counter --;
+      insert = ! insert;
+      return "" + partialSum;
     }
     if(counter == 0){
-      return values;
+      return "all sums";
     }
-    return makeAllSumsH(n - 1, values, partialSum + n, counter, num);
-
+    else {
+    return makeAllSumsH(n - 1, partialSum + n, num, counter, insert) +
+    makeAllSumsH(n - 2, partialSum + n - 1, num, counter, insert);}
   }
+
   public static String printArray(ArrayList<Integer> values){
     String output = "[";
     for(int i = 0; i < values.size(); i++){
@@ -46,6 +50,6 @@ public class Recursion{
     return output;}
 
   public static void main(String[] args){
-    System.out.println(printArray(makeAllSums(3)));
+    System.out.println(makeAllSums(3));
   }
 }
