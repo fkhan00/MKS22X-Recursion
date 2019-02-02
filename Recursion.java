@@ -23,23 +23,15 @@ public class Recursion{
     }
     return fibH(n - 1, second, first + second);
   }
-  public static String makeAllSums(int n){
+  public static ArrayList<Integer> makeAllSums(int n){
     ArrayList<Integer> values = new ArrayList<Integer>();
-    return makeAllSumsH(n, 0, n, (int) Math.pow(2, n), true);
+    return makeAllSumsH(n, 0, values, n);
   }
-  public static String makeAllSumsH(int n, int partialSum, int num,int counter, boolean insert){
-    if(n == 0){
-      n = num;
-      counter --;
-      insert = ! insert;
-      return "" + partialSum;
-    }
-    if(counter == 0){
-      return "all sums";
-    }
-    else {
-    return makeAllSumsH(n - 1, partialSum + n, num, counter, insert) +
-    makeAllSumsH(n - 2, partialSum + n - 1, num, counter, insert);}
+  public static ArrayList<Integer> makeAllSumsH(int n, int partialSum, ArrayList<Integer> values, int num){
+    if(n < 0){
+      return values;}
+    values.add(partialSum);
+    return makeAllSumsH(n - 1, (num * (num + 1)) / 2 - n, values, num);
   }
 
   public static String printArray(ArrayList<Integer> values){
