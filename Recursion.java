@@ -25,21 +25,20 @@ public class Recursion{
   }
   public static ArrayList<Integer> makeAllSums(int n){
     ArrayList<Integer> values = new ArrayList<Integer>();
-    ArrayList<Integer> nums = new ArrayList<Integer>();
+    int[] nums = new int[n + 1];
     for(int i = 0; i <= n; i++){
-      nums.add(i);}
-    for(int i = 0; i < 500; i++){
-      if (groupSum(0, nums, i));{
+      nums[i] = i;}
+    for(int i = 0; i < n * n; i++){
+      if (groupSum(0, nums, i)){
         values.add(i);}}
     return values;}
-  public static boolean groupSum(int start, ArrayList<Integer> nums, int target){
+
+  public static boolean groupSum(int start, int[] nums, int target){
     if(target == 0){
-      return true;
-    }
-    if(start >= nums.size()){
-      return false;
-    }
-    return groupSum(start + 1, nums, target - nums.get(start)) || groupSum(start + 1, nums, target);}
+      return true;}
+    if(start >= nums.length){
+      return false;}
+    return groupSum(start + 1, nums, target - nums[start]) || groupSum(start + 1, nums, target);}
 
   public static String printArray(ArrayList<Integer> values){
     String output = "[";
