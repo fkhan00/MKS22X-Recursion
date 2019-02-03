@@ -25,14 +25,21 @@ public class Recursion{
   }
   public static ArrayList<Integer> makeAllSums(int n){
     ArrayList<Integer> values = new ArrayList<Integer>();
-    return makeAllSumsH(n, 0, values, n);
-  }
-  public static ArrayList<Integer> makeAllSumsH(int n, int partialSum, ArrayList<Integer> values, int num){
-    if(n < 0){
-      return values;}
-    values.add(partialSum);
-    return makeAllSumsH(n - 1, (num * (num + 1)) / 2 - n, values, num);
-  }
+    ArrayList<Integer> nums = new ArrayList<Integer>();
+    for(int i = 0; i <= n; i++){
+      nums.add(i);}
+    for(int i = 0; i < 500; i++){
+      if (groupSum(0, nums, i));{
+        values.add(i);}}
+    return values;}
+  public static boolean groupSum(int start, ArrayList<Integer> nums, int target){
+    if(target == 0){
+      return true;
+    }
+    if(start >= nums.size()){
+      return false;
+    }
+    return groupSum(start + 1, nums, target - nums.get(start)) || groupSum(start + 1, nums, target);}
 
   public static String printArray(ArrayList<Integer> values){
     String output = "[";
@@ -42,6 +49,6 @@ public class Recursion{
     return output;}
 
   public static void main(String[] args){
-    System.out.println(makeAllSums(3));
+    System.out.println(makeAllSums(6));
   }
 }
