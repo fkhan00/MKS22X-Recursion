@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-public class recursion{
+public class Recursion{
   public static double sqrt(double num, double epsilon){
     return sqrtH(num, epsilon, num / 2);}
 
