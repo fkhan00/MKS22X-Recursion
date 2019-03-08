@@ -37,16 +37,15 @@ public class recursion{
     for(int i = 1; i < n + 1; i++){
       nums[i] = i;}
     makeAllSumsH(nums, 0, 0);
-    ArrayList<Integer> output = new ArrayList<Integer>();
-    for(int i = 0; i < values.size() / 2; i++){
-      output.add(values.get(i));
-    }
-    return output;}
+    while(values.size() != Math.pow(n, 2) - 1){
+      values.remove(0);}
+    return values;}
   public static void makeAllSumsH(int[] nums, int index, int partialSum){
     if(index == nums.length){
       values.add(partialSum);
-      return;}
-      makeAllSumsH(nums, index + 1, partialSum + nums[index]);
-      makeAllSumsH(nums, index + 1, partialSum);
+      return;
+    }
+    makeAllSumsH(nums, index + 1, partialSum);
+    makeAllSumsH(nums, index + 1, partialSum + nums[index]);
   }
 }
